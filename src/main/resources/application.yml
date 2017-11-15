@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cbc_blog?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 674181203
+    sql-script-encoding: UTF-8
+    hikari:
+      maximum-pool-size: 10
+      max-lifetime: 1765000
+
+liquibase:
+  change-log: classpath:db/liquibase/master.xml
+
+mybatis-plus:
+  type-aliases-package: com.cbc.myblog.domain
+  type-handlers-package: com.cbc.myblog.persistence.typeHandler
+  mapper-locations: com/cbc/myblog/persistence/*Mapper.xml
