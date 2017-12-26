@@ -9,166 +9,84 @@
     <property name="autoIncrement" value="true" dbms="mysql,h2,postgresql,oracle"/>
     <changeSet id="201711100001" author="cbc">
         <createTable tableName="oauth_client_details">
-            <column name="id" type="bigint">
+            <column name="client_id" type="varchar(128)">
                 <constraints nullable="false"
                              primaryKey="true"
                              primaryKeyName="pk_oauth_client_id"/>
-            </column>
-            <column name="client_id" type="varchar(256)">
-                <constraints nullable="false"
-                             unique="true"
-                             uniqueConstraintName="idx_uq_oauth_client_client_id"/>
             </column>
             <column name="resource_ids" type="varchar(256)"/>
             <column name="client_secret" type="varchar(256)"/>
             <column name="scope" type="varchar(256)"/>
             <column name="authorized_grant_types" type="varchar(256)"/>
             <column name="web_server_redirect_uri" type="varchar(256)"/>
-            <column name="authorities" type="varchar(2000)"/>
-            <column name="access_token_validity" type="int"/>
-            <column name="refresh_token_validity" type="int"/>
+            <column name="authorities" type="varchar(256)"/>
+            <column name="access_token_validity" type="INTEGER"/>
+            <column name="refresh_token_validity" type="INTEGER"/>
             <column name="additional_information" type="varchar(4096)"/>
-            <column name="auto_approve_scopes" type="varchar(4096)"/>
-            <column name="is_enabled" type="boolean">
-                <constraints nullable="false"/>
-            </column>
-            <column name="is_deleted" type="boolean">
-                <constraints nullable="false"/>
-            </column>
-            <column name="created_date" type="timestamp">
-                <constraints nullable="false"/>
-            </column>
-            <column name="created_by" type="bigint"/>
-            <column name="last_updated_date" type="timestamp"/>
-            <column name="last_updated_by" type="bigint"/>
-            <column name="version_number" type="int"/>
+            <column name="autoapprove" type="varchar(256)"/>
         </createTable>
         
         <createTable tableName="oauth_client_token">
-            <column name="id" type="bigint">
+            <column name="token_id" type="VARCHAR(256)">
+            </column>
+            <column name="token" type="blob"/>
+            <column name="authentication_id" type="VARCHAR(128)">
                 <constraints nullable="false"
                              primaryKey="true"
                              primaryKeyName="pk_oauth_client_token_id"/>
             </column>
-            <column name="token_id" type="varchar(256)"></column>
-            <column name="token" type="json"/>
-            <column name="authentication_id" type="bigint">
-                <constraints nullable="false" unique="true" uniqueConstraintName="idx_uq_oauth_client_token_auth_id"/>
-            </column>
             <column name="user_name" type="varchar(256)"/>
-            <column name="user_id" type="bigint"/>
             <column name="client_id" type="varchar(256)"/>
-            <column name="is_enabled" type="boolean">
-                <constraints nullable="false"/>
-            </column>
-            <column name="is_deleted" type="boolean">
-                <constraints nullable="false"/>
-            </column>
-            <column name="created_date" type="timestamp">
-                <constraints nullable="false"/>
-            </column>
-            <column name="created_by" type="bigint"/>
-            <column name="last_updated_date" type="timestamp"/>
-            <column name="last_updated_by" type="bigint"/>
-            <column name="version_number" type="int"/>
         </createTable>
         
         <createTable tableName="oauth_access_token">
-            <column name="id" type="bigint">
-            <constraints nullable="false"
-                         primaryKey="true"
-                         primaryKeyName="pk_oauth_access_token_id"/>
-        </column>
             <column name="token_id" type="varchar(256)"></column>
-            <column name="token" type="json"/>
-            <column name="authentication_id" type="bigint">
-                <constraints nullable="false" unique="true" uniqueConstraintName="idx_uq_oauth_access_token_auth_id"/>
+            <column name="token" type="blob"/>
+            <column name="authentication_id" type="VARCHAR(256)">
+                <constraints nullable="false"
+                             primaryKey="true"
+                             primaryKeyName="pk_oauth_access_token_id"/>
             </column>
             <column name="user_name" type="varchar(256)"/>
-            <column name="user_id" type="bigint"/>
             <column name="client_id" type="varchar(256)"/>
-            <column name="authentication" type="json"/>
+            <column name="authentication" type="blob"/>
             <column name="refresh_token" type="varchar(256)"/>
-            <column name="is_enabled" type="boolean">
-                <constraints nullable="false"/>
-            </column>
-            <column name="is_deleted" type="boolean">
-                <constraints nullable="false"/>
-            </column>
-            <column name="created_date" type="timestamp">
-                <constraints nullable="false"/>
-            </column>
-            <column name="created_by" type="bigint"/>
-            <column name="last_updated_date" type="timestamp"/>
-            <column name="last_updated_by" type="bigint"/>
-            <column name="version_number" type="int"/>
         </createTable>
         <createTable tableName="oauth_refresh_token">
-            <column name="id" type="bigint">
-                <constraints nullable="false"
-                             primaryKey="true"
-                             primaryKeyName="pk_oauth_refresh_token_id"/>
-            </column>
             <column name="token_id" type="varchar(256)"></column>
-            <column name="token" type="json"/>
-            <column name="authentication" type="json"></column>
-            <column name="is_enabled" type="boolean">
-                <constraints nullable="false"/>
-            </column>
-            <column name="is_deleted" type="boolean">
-                <constraints nullable="false"/>
-            </column>
-            <column name="created_date" type="timestamp">
-                <constraints nullable="false"/>
-            </column>
-            <column name="created_by" type="bigint"/>
-            <column name="last_updated_date" type="timestamp"/>
-            <column name="last_updated_by" type="bigint"/>
-            <column name="version_number" type="int"/>
+            <column name="token" type="blob"/>
+            <column name="authentication" type="blob"></column>
         </createTable>
+
         <createTable tableName="oauth_code">
-            <column name="id" type="bigint">
-                <constraints nullable="false"
-                             primaryKey="true"
-                             primaryKeyName="pk_oauth_code_id"/>
-            </column>
             <column name="code" type="varchar(256)"></column>
-            <column name="authentication" type="json"></column>
-            <column name="is_enabled" type="boolean">
-                <constraints nullable="false"/>
-            </column>
-            <column name="is_deleted" type="boolean">
-                <constraints nullable="false"/>
-            </column>
-            <column name="created_date" type="timestamp">
-                <constraints nullable="false"/>
-            </column>
-            <column name="created_by" type="bigint"/>
-            <column name="last_updated_date" type="timestamp"/>
-            <column name="last_updated_by" type="bigint"/>
-            <column name="version_number" type="int"/>
+            <column name="authentication" type="blob"></column>
         </createTable>
         <createTable tableName="oauth_approvals">
-            <column name="id" type="bigint">
-                <constraints nullable="false"
-                             primaryKey="true"
-                             primaryKeyName="pk_oauth_approvals_id"/>
+            <column name="userId" type="VARCHAR(256)"></column>
+            <column name="clientId" type="VARCHAR(256)"></column>
+            <column name="scope" type="VARCHAR(256)"></column>
+            <column name="status" type="VARCHAR(10)"></column>
+            <column name="expiresAt" type="TIMESTAMP">
             </column>
-            <column name="user_id" type="bigint"></column>
-            <column name="authentication" type="json"></column>
-            <column name="is_enabled" type="boolean">
-                <constraints nullable="false"/>
+            <column name="lastModifiedAt" type="TIMESTAMP">
             </column>
-            <column name="is_deleted" type="boolean">
-                <constraints nullable="false"/>
+        </createTable>
+
+        <createTable tableName="ClientDetails">
+            <column name="appId" type="VARCHAR(256)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="idx_ClientDetails"/>
             </column>
-            <column name="created_date" type="timestamp">
-                <constraints nullable="false"/>
-            </column>
-            <column name="created_by" type="bigint"/>
-            <column name="last_updated_date" type="timestamp"/>
-            <column name="last_updated_by" type="bigint"/>
-            <column name="version_number" type="int"/>
+            <column name="resourceIds" type="VARCHAR(256)"></column>
+            <column name="appSecret" type="VARCHAR(256)"></column>
+            <column name="scope" type="VARCHAR(256)"></column>
+            <column name="grantTypes" type="VARCHAR(256)"/>
+            <column name="redirectUrl" type="VARCHAR(256)"/>
+            <column name="authorities" type="VARCHAR(256)"/>
+            <column name="access_token_validity" type="INTEGER"/>
+            <column name="refresh_token_validity" type="INTEGER"/>
+            <column name="additionalInformation" type="VARCHAR(4096)"/>
+            <column name="autoApproveScopes" type="VARCHAR(256)"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>

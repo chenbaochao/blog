@@ -1,3 +1,4 @@
+/*
 package com.cbc.myblog.security;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
@@ -23,9 +24,11 @@ import org.springframework.util.Assert;
 import java.util.List;
 import java.util.Optional;
 
+*/
 /**
  * Created by cbc on 2017/11/13.
- */
+ *//*
+
 @Slf4j
 @Service
 @AllArgsConstructor
@@ -88,3 +91,4 @@ public class CbcClientDetailsService extends ServiceImpl<ClientDetailsMapper, Oa
         return result;
     }
 }
+*/
