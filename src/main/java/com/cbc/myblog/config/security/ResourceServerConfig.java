@@ -28,9 +28,9 @@ public class ResourceServerConfig  extends ResourceServerConfigurerAdapter {
                 .and()
                 .requestMatchers().anyRequest()
                 .and()
-                .anonymous();
-               // .and();
-              /*  .authorizeRequests()
-                .antMatchers().authenticated();*/
+                .anonymous()
+                .and()
+                .authorizeRequests()
+                .anyRequest().authenticated();
     }
 }

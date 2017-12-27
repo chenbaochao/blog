@@ -2,6 +2,7 @@ package com.cbc.myblog.domain;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.internal.Nullable;
 import lombok.Data;
@@ -20,6 +21,7 @@ import java.util.*;
 @Data
 @NoArgsConstructor
 @Accessors(chain = true)
+@TableName("blog_user")
 public class User implements Comparable{
 
     @TableId

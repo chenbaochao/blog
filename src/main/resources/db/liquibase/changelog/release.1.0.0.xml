@@ -89,4 +89,28 @@
             <column name="autoApproveScopes" type="VARCHAR(256)"/>
         </createTable>
     </changeSet>
+    <changeSet id="201712271008001" author="baochao.chen">
+        <createTable tableName="blog_user">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"
+                             nullable="false"
+                             primaryKeyName="idx_blog_user"/>
+            </column>
+            <column name="username" type="varchar(200)" remarks="用户名">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(200)" remarks="密码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="nickname" type="varchar(200)" remarks="昵称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="avatar" type="varchar(200)" remarks="头像">
+                <constraints nullable="false"/>
+            </column>
+            <column name="joinTime" type="timestamp" remarks="加入时间">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>

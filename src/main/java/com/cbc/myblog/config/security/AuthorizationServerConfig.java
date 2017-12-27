@@ -2,6 +2,7 @@ package com.cbc.myblog.config.security;
 
 import com.cbc.myblog.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,7 +28,7 @@ import java.util.concurrent.TimeUnit;
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-    private  final DataSource dataSource;
+    private final  DataSource dataSource;
 
     private final AuthenticationManager authenticationManager;
 
@@ -78,8 +79,4 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         endpoints.tokenServices(tokenServices);
     }
 
-/*    @Bean
-    public AuthenticationManager authenticationManagerBean(){
-        super.a
-    }*/
 }
