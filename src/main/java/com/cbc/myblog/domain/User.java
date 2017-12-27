@@ -6,23 +6,30 @@ import com.baomidou.mybatisplus.annotations.TableName;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.internal.Nullable;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * Created by cbc on 2017/12/21.
  */
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @Accessors(chain = true)
 @TableName("blog_user")
-public class User implements Comparable{
+public class User implements Comparable,Serializable{
+
+
+    private static final long serialVersionUID = -656075117215734549L;
 
     @TableId
     private Long id;

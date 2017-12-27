@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Select;
  */
 public interface UserMapper extends BaseMapper<User>{
 
-    @Select("select * from user where username=#{username}")
+    @Select("select * from blog_user where username=#{username}")
     User selectByUsername(String username);
 
 }

@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 @Accessors(chain=true)
 @TableName("oauth_client_details")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class OauthClientDetails extends BaseDomain implements ClientDetails{
+public class OauthClientDetails extends BaseDomain implements ClientDetails {
 
     private String clientId;
 

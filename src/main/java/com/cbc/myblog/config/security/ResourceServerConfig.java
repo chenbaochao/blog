@@ -12,7 +12,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
  */
 @Configuration
 @EnableResourceServer
-public class ResourceServerConfig  extends ResourceServerConfigurerAdapter {
+public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     private static final String BLOG = "blog";
 
@@ -31,6 +31,7 @@ public class ResourceServerConfig  extends ResourceServerConfigurerAdapter {
                 .anonymous()
                 .and()
                 .authorizeRequests()
+                .antMatchers("/oauth/token").permitAll()
                 .anyRequest().authenticated();
     }
 }

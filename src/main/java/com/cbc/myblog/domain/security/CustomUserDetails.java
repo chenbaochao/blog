@@ -3,8 +3,10 @@ package com.cbc.myblog.domain.security;
 import com.baomidou.mybatisplus.toolkit.CollectionUtils;
 import com.cbc.myblog.domain.User;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.util.Assert;
@@ -16,8 +18,9 @@ import java.util.*;
  * Created by cbc on 2017/12/26.
  */
 @Getter
+@Setter
 @ToString
-public class CustomUserDetails extends User implements UserDetails{
+public class CustomUserDetails extends User implements UserDetails,CredentialsContainer {
 
     private static final long serialVersionUID = -8838314723658446423L;
 
@@ -37,6 +40,10 @@ public class CustomUserDetails extends User implements UserDetails{
                 && StringUtils.isNotBlank(user.getPassword())) {
             setUsername(user.getUsername());
             setPassword(user.getPassword());
+            setNickname(user.getNickname());
+            setId(user.getId());
+            setAvatar(user.getAvatar());
+            setJoinTime(user.getJoinTime());
             this.enabled = enabled;
             this.accountNonExpired = accountNonExpired;
             this.credentialsNonExpired = credentialsNonExpired;
@@ -60,6 +67,11 @@ public class CustomUserDetails extends User implements UserDetails{
         }
 
         return sortedAuthorities;
+    }
+
+    @Override
+    public void eraseCredentials() {
+        setPassword(null);
     }
 
 
