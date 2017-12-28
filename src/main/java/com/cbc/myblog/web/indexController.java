@@ -17,9 +17,11 @@ import java.security.Principal;
 @RestController
 public class indexController {
 
-  //  @PreAuthorize(hasRole('ROLE_ORG'))
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/hello")
     public ResponseEntity hello(@AuthenticationPrincipal Principal principal){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        authentication.getPrincipal();
         return ResponseEntity.ok(principal);
     }
 }

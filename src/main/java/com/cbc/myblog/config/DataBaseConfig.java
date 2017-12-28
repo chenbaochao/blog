@@ -12,6 +12,7 @@ import com.baomidou.mybatisplus.spring.boot.starter.GlobalConfig;
 import com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusAutoConfiguration;
 import com.baomidou.mybatisplus.spring.boot.starter.MybatisPlusProperties;
 import com.baomidou.mybatisplus.spring.boot.starter.SpringBootVFS;
+import com.zaxxer.hikari.HikariDataSource;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -42,8 +43,6 @@ public class DataBaseConfig {
     private final ResourceLoader resourceLoader;
 
     private final DataSource dataSource;
-
-
 
     @Bean
     public MybatisSqlSessionFactoryBean mybatisSqlSessionFactoryBean(){

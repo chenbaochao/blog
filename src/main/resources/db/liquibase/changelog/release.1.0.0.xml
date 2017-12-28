@@ -108,7 +108,36 @@
             <column name="avatar" type="varchar(200)" remarks="头像">
                 <constraints nullable="false"/>
             </column>
-            <column name="joinTime" type="timestamp" remarks="加入时间">
+            <column name="join_time" type="timestamp" remarks="加入时间">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(200)" remarks="邮件">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="blog_role">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"
+                             nullable="false"
+                             primaryKeyName="idx_blog_role"/>
+            </column>
+            <column name="name" type="varchar(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="blog_user_role">
+            <column name="id" type="bigint">
+                <constraints nullable="false"
+                             primaryKey="true"
+                             primaryKeyName="idx_blog_user_role"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
         </createTable>

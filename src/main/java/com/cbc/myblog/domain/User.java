@@ -1,21 +1,22 @@
 package com.cbc.myblog.domain;
 
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.sun.istack.internal.Nullable;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.Accessors;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import org.springframework.lang.Nullable;
 
+import javax.validation.constraints.NotNull;
 import java.io.IOException;
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.time.ZonedDateTime;
 import java.util.*;
 
 /**
@@ -23,6 +24,8 @@ import java.util.*;
  */
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
 @TableName("blog_user")
@@ -34,24 +37,32 @@ public class User implements Comparable,Serializable{
     @TableId
     private Long id;
 
+    @NotNull
     private String username;
 
     @JsonIgnore
+    @NotNull
     private String password;
 
     // 昵称
+    @NotNull
     private String nickname;
 
     // 头像
     private String avatar;
 
     // 加入时间
+    @TableField(value = "join_time")
     private Date joinTime;
 
-    public User(String username, String password, String nickname) {
+    @NotNull
+    private String email;
+
+    public User(String username, String password, String nickname,String email) {
         this.username = username;
         this.password = password;
         this.nickname = nickname;
+        this.email = email;
     }
 
     /**

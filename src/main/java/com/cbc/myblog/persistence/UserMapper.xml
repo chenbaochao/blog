@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cbc.myblog.persistence.UserMapper">
+
+
+    <resultMap id="BaseResultMap" type="com.cbc.myblog.domain.User">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
+        <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+        <result column="join_time" jdbcType="TIMESTAMP" property="joinTime"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+    </resultMap>
+
+    <resultMap id="CustomUserDetailsResultMap" type="com.cbc.myblog.domain.security.CustomUserDetails">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
+        <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+        <result column="join_time" jdbcType="TIMESTAMP" property="joinTime"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <collection property="authorities" ofType="com.cbc.myblog.domain.security.CustomUserDetails">
+            <id column="role_id" jdbcType="BIGINT" property="id"/>
+            <result column="name" jdbcType="VARCHAR" property="name"/>
+            <result column="type" jdbcType="VARCHAR" property="type"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectUserByUsername" resultMap="BaseResultMap">
+        SELECT
+          u.id,
+          u.username,
+          u.password,
+          u.nickname,
+          u.avatar,
+          u.join_time,
+          u.email
+        FROM
+          blog_user u
+        WHERE
+          u.username = #{username}
+    </select>
+
+</mapper>

@@ -1,10 +1,9 @@
 package com.cbc.myblog.domain.security;
 
 import com.baomidou.mybatisplus.toolkit.CollectionUtils;
+import com.cbc.myblog.domain.Role;
 import com.cbc.myblog.domain.User;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,16 +17,19 @@ import java.util.*;
  * Created by cbc on 2017/12/26.
  */
 @Getter
-@Setter
 @ToString
 public class CustomUserDetails extends User implements UserDetails,CredentialsContainer {
 
     private static final long serialVersionUID = -8838314723658446423L;
 
     private final Set<GrantedAuthority> authorities;
+
     private final boolean accountNonExpired;
+
     private final boolean accountNonLocked;
+
     private final boolean credentialsNonExpired;
+
     private final boolean enabled;
 
     public CustomUserDetails(User user, Collection<? extends GrantedAuthority> authorities) {
@@ -87,4 +89,5 @@ public class CustomUserDetails extends User implements UserDetails,CredentialsCo
             return g2.getAuthority() == null?-1:(g1.getAuthority() == null?1:g1.getAuthority().compareTo(g2.getAuthority()));
         }
     }
+
 }

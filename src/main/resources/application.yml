@@ -17,3 +17,5 @@ spring:
 logging:
   level:
     com.cbc.myblog: debug
+server:
+  port: 8081
