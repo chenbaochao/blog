@@ -1,3 +1,4 @@
+/*
 package com.cbc.myblog.config.security;
 
 import com.cbc.myblog.service.UserService;
@@ -22,9 +23,12 @@ import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import javax.sql.DataSource;
 import java.util.concurrent.TimeUnit;
 
+*/
 /**
  * Created by cbc on 2017/11/8.
- */
+ *//*
+
+
 @Configuration
 @AllArgsConstructor
 @EnableAuthorizationServer
@@ -62,7 +66,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     //允许表单认证
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security.allowFormAuthenticationForClients();
+        security.allowFormAuthenticationForClients().tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
     }
 
     @Override
@@ -82,4 +86,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         endpoints.tokenServices(tokenServices);
     }
 
+
+
 }
+*/

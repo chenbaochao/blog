@@ -4,13 +4,17 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
+import lombok.experimental.Accessors;
 import org.springframework.security.core.GrantedAuthority;
 
 /**
  * Created by cbc on 2017/12/27.
  */
 @Data
+@Accessors(chain=true)
+@NoArgsConstructor
 @TableName("blog_role")
 public class Role  implements GrantedAuthority {
 
@@ -31,4 +35,6 @@ public class Role  implements GrantedAuthority {
         this.name = name;
         this.type = type;
     }
+
+
 }

@@ -142,4 +142,7 @@
             </column>
         </createTable>
     </changeSet>
+    <changeSet id="20171229001" author="baochao.chen">
+        <addUniqueConstraint tableName="blog_role" columnNames="type"></addUniqueConstraint>
+    </changeSet>
 </databaseChangeLog>

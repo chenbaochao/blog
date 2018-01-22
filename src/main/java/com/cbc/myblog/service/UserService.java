@@ -1,6 +1,7 @@
 package com.cbc.myblog.service;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.toolkit.CollectionUtils;
 import com.cbc.myblog.domain.Role;
 import com.cbc.myblog.domain.User;
 import com.cbc.myblog.domain.UserRole;
@@ -18,6 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.naming.AuthenticationNotSupportedException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,12 +41,12 @@ public class UserService extends BaseService<UserMapper,User> implements UserDet
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userMapper.selectUserByUsername(username);
-        List<UserRole> userRoles = userRoleMapper.selectList(new EntityWrapper<UserRole>().eq("user_id", user.getId()));
-        List<Long> roleIds = userRoles.stream().map(UserRole::getRoleId).collect(Collectors.toList());
-        List<Role> roles = roleMapper.selectBatchIds(roleIds);
         if (null == user) {
             throw new UsernameNotFoundException("Could not find the user '" + username + "'");
         }
+        List<UserRole> userRoles = userRoleMapper.selectList(new EntityWrapper<UserRole>().eq("user_id", user.getId()));
+        List<Long> roleIds = userRoles.stream().map(UserRole::getRoleId).collect(Collectors.toList());
+        List<Role> roles = roleMapper.selectBatchIds(roleIds);
         return new CustomUserDetails(user,roles);
     }
 

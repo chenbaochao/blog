@@ -1,3 +1,4 @@
+/*
 package com.cbc.myblog.config.security;
 
 import org.springframework.context.annotation.Configuration;
@@ -7,9 +8,11 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 
+*/
 /**
  * Created by cbc on 2017/12/20.
- */
+ *//*
+
 @Configuration
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
@@ -19,19 +22,30 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
         resources.resourceId(BLOG).stateless(true);
-    }
+}
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().disable()
+               // .anonymous().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 .and()
-                .requestMatchers().anyRequest()
-                .and()
-                .anonymous()
-                .and()
                 .authorizeRequests()
-                .antMatchers("/user/register").permitAll()
-                .anyRequest().authenticated();
+                .antMatchers("/", "/webjars*/
+/**", "/user/register", "/api/common*/
+/**", "/image*/
+/**","/assets*/
+/**","/css*/
+/**").permitAll()
+                .antMatchers("/oauth*/
+/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin().loginPage("/login").defaultSuccessUrl("/index").permitAll();
     }
+
+
+
 }
+*/
