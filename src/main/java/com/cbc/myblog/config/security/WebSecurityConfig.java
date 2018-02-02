@@ -46,7 +46,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         return manager;
     }*/
 
-
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/resources/static/**");
+    }
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
@@ -54,10 +57,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/user/register", "/image/**","/assets/**","/css/**","/register","/login").permitAll()
-                .antMatchers("/fonts/**","/img/**","/js/**").permitAll()
-                .antMatchers("/favicon.ico").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers("/", "/user/register","/register").permitAll()
+                .antMatchers("/api/**").authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()
                 .and().csrf().disable();

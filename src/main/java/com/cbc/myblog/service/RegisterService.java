@@ -7,7 +7,6 @@ import com.cbc.myblog.domain.UserRole;
 import com.cbc.myblog.persistence.RoleMapper;
 import com.cbc.myblog.persistence.UserMapper;
 import com.cbc.myblog.persistence.UserRoleMapper;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

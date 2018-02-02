@@ -375,6 +375,14 @@
 <script>
     /* 注册点击事件 */
     $("#Complete").click(function () {
+        $.ajax({
+            type: 'post',
+            url: "/user/register",
+            data: {},
+            success: function (data) {
+
+            }
+        })
 
         $.post("/user/register",
                {
