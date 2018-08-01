@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: blog-auth
+  cloud:
+    config:
+      uri: http://blog-config:8888
+      fail-fast: true
+      password: cbc
+      username: user

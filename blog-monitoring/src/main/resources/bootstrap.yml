@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: blog-monitoring
+
+  cloud:
+    config:
+      uri: http://blog-config:8888
+      fail-fast: true
+      password: cbc
+      username: user
+
+

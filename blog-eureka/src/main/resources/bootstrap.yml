@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: blog-eureka
+  cloud:
+    config:
+      uri: http://blog-config:8888
+      fail-fast: true
+      password: cbc
+      username: user
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+
+  client:
+    registerWithEureka: false
+    fetchRegistry: false  #此客户端是否获取eureka服务器注册表上的注册信息，默认为true
+#  server:
+#    waitTimeInMsWhenSyncEmpty: 0
